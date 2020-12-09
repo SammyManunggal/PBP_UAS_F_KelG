@@ -24,16 +24,16 @@
             android:layout_marginTop="10dp"
             android:id="@+id/imgProfile"/>
 
-        <Button
-            android:layout_width="120dp"
-            android:layout_height="35dp"
-            android:layout_gravity="left"
-            android:layout_marginLeft="60dp"
-            android:text="Take Photo"
-            android:textSize="10dp"
-            android:id="@+id/takePhoto"
-            android:backgroundTint="@color/grey"
-            android:textColor="@color/black"/>
+<!--        <Button-->
+<!--            android:layout_width="120dp"-->
+<!--            android:layout_height="35dp"-->
+<!--            android:layout_gravity="left"-->
+<!--            android:layout_marginLeft="60dp"-->
+<!--            android:text="Take Photo"-->
+<!--            android:textSize="10dp"-->
+<!--            android:id="@+id/takePhoto"-->
+<!--            android:backgroundTint="@color/grey"-->
+<!--            android:textColor="@color/black"/>-->
 
         <TextView
             android:layout_width="wrap_content"

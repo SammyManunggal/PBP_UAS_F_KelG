@@ -66,7 +66,7 @@ public class ProfileActivity extends AppCompatActivity {
 
 
 
-        takePhoto = findViewById(R.id.takePhoto);
+        //takePhoto = findViewById(R.id.takePhoto);
         signout = findViewById(R.id.btn_signout);
         btnBack = findViewById(R.id.btn_back);
         header = findViewById(R.id.id_header);
@@ -90,24 +90,24 @@ public class ProfileActivity extends AppCompatActivity {
 
         GetPreferensi(email);
 
-        takePhoto.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(checkSelfPermission(Manifest.permission.CAMERA)== PackageManager.PERMISSION_DENIED ||
-                        checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)== PackageManager.PERMISSION_DENIED) {
-
-                    String[] permission = {Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
-
-                    ActivityCompat.requestPermissions(ProfileActivity.this, permission, PERMISSION_CODE);
-
-                }else if(checkSelfPermission(Manifest.permission.CAMERA)== PackageManager.PERMISSION_GRANTED ||
-                        checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)== PackageManager.PERMISSION_GRANTED){
-
-                    openCamera();
-
-                }
-            }
-        });
+//        takePhoto.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if(checkSelfPermission(Manifest.permission.CAMERA)== PackageManager.PERMISSION_DENIED ||
+//                        checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)== PackageManager.PERMISSION_DENIED) {
+//
+//                    String[] permission = {Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
+//
+//                    ActivityCompat.requestPermissions(ProfileActivity.this, permission, PERMISSION_CODE);
+//
+//                }else if(checkSelfPermission(Manifest.permission.CAMERA)== PackageManager.PERMISSION_GRANTED ||
+//                        checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)== PackageManager.PERMISSION_GRANTED){
+//
+//                    openCamera();
+//
+//                }
+//            }
+//        });
 
         signout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -206,9 +206,9 @@ public class ProfileActivity extends AppCompatActivity {
             Bundle extras = data.getExtras();
             bitmap = (Bitmap) extras.get("data");
 
-            Glide.with(ProfileActivity.this)
-                .load(bitmap)
-                .into(imageView);
+//            Glide.with(ProfileActivity.this)
+//                .load(bitmap)
+//                .into(imageView);
 
             imageView.setImageBitmap(bitmap);
             ByteArrayOutputStream bait = new ByteArrayOutputStream();
@@ -257,11 +257,7 @@ public class ProfileActivity extends AppCompatActivity {
                 alamat.setText(response.body().getUsers().get(0).getAddress());
                 nohp.setText(response.body().getUsers().get(0).getPhoneNumber());
 
-                if (!response.body().getUsers().get(0).getImgURI() .equals("")){
-                    Glide.with(ProfileActivity.this)
-                            .load(ApiClient.IMG_URL + response.body().getUsers().get(0).getImgURI())
-                            .into(imageView);
-                }
+
 
 
                 dialog.dismiss();
