@@ -1,6 +1,7 @@
 package com.sammymanunggal.tugasBesarPBP.model.admin;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -15,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.button.MaterialButton;
 import com.sammymanunggal.tugasBesarPBP.R;
+import com.sammymanunggal.tugasBesarPBP.model.SignUpIn.SignIn;
 
 import java.util.Objects;
 
@@ -92,7 +94,8 @@ public class CreateNewsActivity extends AppCompatActivity {
             public void onResponse(retrofit2.Call<NewsResponse> call, Response<NewsResponse> response) {
                 Toast.makeText(CreateNewsActivity.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
                 progressDialog.dismiss();
-                onBackPressed();
+                Intent intent = new Intent(CreateNewsActivity.this, NewsMainActivity.class);
+                startActivity(intent);
             }
 
             @Override
