@@ -87,7 +87,7 @@ public class SignIn extends AppCompatActivity {
                                     Toast.makeText(SignIn.this, "Authentication Failed", Toast.LENGTH_SHORT).show();
                                 } else {
                                         if(!mFirebaseUser.isEmailVerified()){
-                                            Toast.makeText(SignIn.this,"Please Verify Email",Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(SignIn.this,"Please  Verify Email",Toast.LENGTH_SHORT).show();
                                         }else{
                                             SharedPreferences mSettings = getApplicationContext().getSharedPreferences("MyPref2", Context.MODE_PRIVATE);
                                             SharedPreferences.Editor editor = mSettings.edit();
