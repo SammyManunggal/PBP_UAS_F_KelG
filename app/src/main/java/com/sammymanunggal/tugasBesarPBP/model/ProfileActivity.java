@@ -17,12 +17,15 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.sammymanunggal.tugasBesarPBP.R;
@@ -35,6 +38,7 @@ import com.sammymanunggal.tugasBesarPBP.model.admin.ApiClient;
 import com.sammymanunggal.tugasBesarPBP.model.admin.ApiInterface;
 
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -187,6 +191,7 @@ public class ProfileActivity extends AppCompatActivity {
         values.put(MediaStore.Images.Media.TITLE,"New Picture");
         values.put(MediaStore.Images.Media.DESCRIPTION,"From tubes APP");
 
+        imageUri = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,values);
         //START CAMERA
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         intent.putExtra(MediaStore.EXTRA_OUTPUT,imageUri);
@@ -200,9 +205,20 @@ public class ProfileActivity extends AppCompatActivity {
             imageUri = data.getData();
             Bundle extras = data.getExtras();
             bitmap = (Bitmap) extras.get("data");
+
+            Glide.with(ProfileActivity.this)
+                .load(bitmap)
+                .into(imageView);
+
             imageView.setImageBitmap(bitmap);
+            ByteArrayOutputStream bait = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.JPEG,100,bait);
+
+            String encode = Base64.encodeToString(bait.toByteArray(),Base64.DEFAULT);
+
             bitmap = getResizedBitmap(bitmap, 512);
-            Toast.makeText(getApplicationContext(),imageToString(bitmap),Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getApplicationContext(),imageToString(bitmap),Toast.LENGTH_LONG).show();
+            Log.d(ProfileActivity.class.getSimpleName(),imageToString(bitmap).replaceAll("\\s+",""));
 
         }
     }
@@ -240,6 +256,14 @@ public class ProfileActivity extends AppCompatActivity {
                 nama.setText(response.body().getUsers().get(0).getNamePreferensi());
                 alamat.setText(response.body().getUsers().get(0).getAddress());
                 nohp.setText(response.body().getUsers().get(0).getPhoneNumber());
+
+                if (!response.body().getUsers().get(0).getImgURI() .equals("")){
+                    Glide.with(ProfileActivity.this)
+                            .load(ApiClient.IMG_URL + response.body().getUsers().get(0).getImgURI())
+                            .into(imageView);
+                }
+
+
                 dialog.dismiss();
 
             }
