@@ -47,17 +47,7 @@ public class UserListRecyclerAdapter extends RecyclerView.Adapter<UserListRecycl
         holder.twTanggal.setText(brg.getNamePreferensi());
         holder.twIsi.setText(brg.getPhoneNumber());
 
-        holder.mParent.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FragmentManager manager = ((AppCompatActivity) context).getSupportFragmentManager();
-                DetailNewsFragment dialog = new DetailNewsFragment();
-                dialog.show(manager,"dialog");
 
-                Bundle args = new Bundle();
-                dialog.setArguments(args);
-            }
-        });
     }
 
     @Override
