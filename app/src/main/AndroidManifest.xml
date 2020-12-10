@@ -19,7 +19,7 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity android:name=".model.admin.ShowUserActivity"></activity>
-        <activity android:name=".model.admin.UserListRecyclerAdapter" />
+        <activity android:name=".model.admin.UserListRecyclerAdapter"/>
         <activity android:name=".model.admin.NewsMainActivity" />
         <activity android:name=".MapActivity" />
         <activity android:name=".model.ProfileActivity" />
